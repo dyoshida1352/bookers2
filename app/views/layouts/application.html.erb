@@ -10,6 +10,57 @@
   </head>
 
   <body>
+    <header>
+      <nav>
+        <div>
+          <a href="/"><span>Bookers</span></a>
+          <button>
+            <span></span>
+          </button>
+          <div>
+            <ul>
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to "Home", root_path %>
+              </li>
+              <li>
+                <%= link_to "Users", root_path %>
+              </li>
+              <li>
+                <%= link_to "Books", root_path %>
+              </li>
+              <li>
+                <%= link_to "logout", destroy_user_session_path, method: :delete %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to "Home", root_path %>
+              </li>
+              <li>
+                <%= link_to "About", homes_path %>
+              </li>
+              <li>
+                <%= link_to "sign up", new_user_registration_path %>
+              </li>
+              <li>
+                <%= link_to "login", new_user_session_path %>
+              </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
     <%= yield %>
+    <footer>
+      <div>
+      	<div>
+        	<div>
+        		<p>CopyRight Infratop.inc</p>
+        	</div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
