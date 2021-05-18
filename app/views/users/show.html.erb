@@ -9,11 +9,9 @@
           <tr></tr>
           <tr>
             <th>name</th>
-            <th></th>
           </tr>
           <tr>
             <th>introduction</th>
-            <th></th>
           </tr>
         </tbody>
       </table>
@@ -46,8 +44,9 @@
           <tr>
             <td><%= link_to book.title, book_path(book) %></td>
             <td><%= book.body %></td>
-          </tr>
+          <tr>
           <% end %>
+          </tr>
         </tbody>
       </table>
     </div>
