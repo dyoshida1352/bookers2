@@ -8,7 +8,6 @@
           <%= f.text_field :name %>
         </div>
         <div>
-          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg"%>
           <label>Image</label>
           <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
         </div>
