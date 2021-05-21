@@ -10,10 +10,10 @@
         <div>
         <% if user_signed_in? %>
           <div>
-            <%= link_to "Log in", root_path %>
+            <%= link_to "Log in", user_path(current_user) %>
           </div>
           <div>
-            <%= link_to "Sign Up", root_path %>
+            <%= link_to "Sign Up", user_path(current_user) %>
           </div>
         <% else %>
           <div>
