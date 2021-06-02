@@ -30,11 +30,11 @@
               <td><%= book.body %></td>
               <td>
               <% if book.favorited_by?(current_user) %>
-                <%= link_to books_path, method: :delete do %>
+                <%= link_to book_favorites_path(book.id), method: :delete do %>
                   <p class="text-danger">♥<%= book.favorites.count %></p>
                 <% end %>
               <% else %>
-                <%= link_to book_favorites_path(book.favorites), method: :post do %>
+                <%= link_to book_favorites_path(book.id), method: :post do %>
                   ♡<%= book.favorites.count %>
                 <% end %>
               <% end %>
