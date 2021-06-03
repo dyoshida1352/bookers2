@@ -2,7 +2,6 @@
 <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
 <table class='table'>
   <tbody>
-    <tr></tr>
     <tr>
       <th>name</th>
       <th><%= user.name %></th>
@@ -11,8 +10,25 @@
       <th>introduction</th>
       <th><%= user.introduction %></th>
     </tr>
+    <tr>
+      <th>follows</th>
+      <th><%= link_to user.followings.count, user_followings_path(user) %></th>
+    </tr>
+    <tr>
+      <th>followers</th>
+      <th><%= link_to user.followers.count, user_followers_path(user) %></th>
+    </tr>
   </tbody>
 </table>
+<div>
+<% if user != current_user %>
+  <% if current_user.following?(user) %>
+    <%= link_to "フォローを外す", user_relationships_path(user), method: :delete, class:"btn btn-info mb-3" %>
+  <% else %>
+    <%= link_to "フォローする", user_relationships_path(user), method: :post, class:"btn btn-success mb-3" %>
+  <% end %>
+<% end %>
+</div>
 <div class='row'>
   <%= link_to edit_user_path(user), class:"btn btn-outline-secondary btn-block fas fa-user-cog" do %>
   <% end %>
@@ -21,11 +37,11 @@
 <%= form_with model: book, local:true do |f| %>
   <div class="form-group mb-3">
     <label class="d-block mb-2">Title</label>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control book_title' %>
   </div>
   <div class="form-group mb-3">
     <label class="d-block mb-2">Opinion</label>
-    <%= f.text_area :body %>
+    <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
   <div class="form-group mb-3"><%= f.submit "Create Book", class:"btn btn-success" %></div>
 <% end %>
