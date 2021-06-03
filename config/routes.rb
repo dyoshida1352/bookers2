@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     resources :book_comments, only: [:create, :destroy]
   end
-  resources :users, only: [:index, :create, :show, :edit, :update]
+  resources :users, only: [:index, :create, :show, :edit, :update] do
+    resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings'
+    get 'followers' => 'relationships#followers'
+  end
 
 end
