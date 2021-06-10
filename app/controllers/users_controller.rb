@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = current_user
     @book = Book.new(book_params)
-    @books = Book.all
+    @books = Book.includes(:favorite_users).sort {|a,b| b.favorite_users.size <=> a.favorite_users.size}
     @book.user_id = current_user.id
     if @book.save
       flash[:notice] = "You have created book successfully."
